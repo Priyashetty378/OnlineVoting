@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for Your Candidate</title>
+    <style>
+        body { background-color: lightblue; text-align: center; padding-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+        .symbols{
+            flex-wrap: wrap;
+          
+            margin: 4% 40%;
+            display: flex;
+            grid-gap:25px;
+            
+        }
+        .button1{
+           background-color: darkorange;
+        }
+        .button2{
+            background-color: white;
+            
+        }
+        .button3{
+            background-color: green;
+        }
+        button{
+            cursor:pointer;
+        }
+        .button2 button{
+            background-color: rgb(6, 59, 235);
+            color: white;
+        }
+       .button1 button, .button3 button{
+        background-color: white;
+
+       }
+       .button1 button:hover, .button3 button:hover{
+        color:rgb(7, 79, 214);
+       }
+    </style>
+    <script>
+        function voteForCandidate(candidateName) {
+            // Retrieve the vote counts from localStorage
+            let voteCounts = JSON.parse(localStorage.getItem("voteCounts") || '{}');
+            
+            // Increment the vote count for the selected candidate
+            voteCounts[candidateName] = (voteCounts[candidateName] || 0) + 1;
+            
+            // Save the updated vote counts to localStorage
+            localStorage.setItem("voteCounts", JSON.stringify(voteCounts));
+            
+            alert("Your vote has been recorded!");
+            window.location.href = "votingResult.html";  // Redirect to results page
+        }
+        
+        // Ensure the user is logged in
+        // window.onload = function() {
+        //     if (!localStorage.getItem("loggedIn")) {
+        //         window.location.href = "index.html";  // Redirect to login if not logged in
+        //     }
+        // };
+    </script>
+</head>
+<body>
+    <h1>Vote for Your Favorite Candidate</h1>
+    <div class="button1">
+    <button onclick="voteForCandidate('Lotus')">BJP</button>
+    </div>
+    <div class="button2">
+    <button onclick="voteForCandidate('Farmer')">JDS</button>
+    </div>
+    <div class="button3">
+
+    <button onclick="voteForCandidate('Palm')">Congress</button>
+    </div>
+    <div class="symbols">
+   
+    <img src="images.png" alt="bjp" height=50 width=60>
+  
+    <img src="images 12.png" alt="congress" height=50 width=60>
+  
+    <img src="image13.jpeg" alt="jds"  height=50 width=60>
+   
+    </div>
+
+</body>
+</html>
